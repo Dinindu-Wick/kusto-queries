@@ -9,7 +9,6 @@ let ip_addresses = dynamic([""]);
 let domains = dynamic([""]);
 DeviceNetworkEvents
 |where TimeGenerated >= ago(30d)
-//|where * has "domain" or * has "domain"
 |where RemoteURL has_any domains or RemoteIP has_any ip_addresses
 |where ActionType == "ConnectionSuccess"
 |summarize count() by DeviceName, InitiatingProcessAccountUpn, InitiatingProcessAccountName, ActionType, InitiatingProcessParentFileName, InitiatingProcessVersionInfoInternalFileName, LocalIP, RemoteIP, RemotePort, RemoteUrl, InitiatingProcessCommandLine
