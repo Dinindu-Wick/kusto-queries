@@ -8,5 +8,7 @@
 | extend AccountName = tostring(Entities.Name)
 | extend Host = tostring(Entities.HostName)
 | extend Address = tostring(Entities.Address)
-| summarize count(), ['Type'] = make_set_if(Type, true), ['Account Name'] = make_set_if(AccountName, true), ['Host Name'] = make_set_if(Host, true), ['IP Address'] = make_set_if(Address, true) by SystemAlertId, AlertName
+| extend LastExternalIP = tostring(Entities.LastExternalIpAddress.Address)
+| extend LastIPAddress = tostring(Entities.LastIpAddress.Address)
+| summarize count(), ['Type'] = make_set_if(Type, true), ['Account Name'] = make_set_if(AccountName, true), ['Host Name'] = make_set_if(Host, true), ['IP Address'] = make_set_if(Address, true) , ['Last External IP'] = make_set_if(LastExternalIP, true), ['Last IP address'] = make_set_if(LastIPAddress, true) by SystemAlertId, AlertName
 ```
