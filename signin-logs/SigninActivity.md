@@ -18,7 +18,7 @@ union SigninLogs, AADManagedIdentitySignInLogs
 |extend step1AuthMethod = strcat(tostring(parse_json(AuthenticationDetails)[0].authenticationMethod), " | " , tostring(parse_json(AuthenticationDetails)[0].authenticationStepResultDetail), " | ", tostring(parse_json(AuthenticationDetails)[0].succeeded)) //First factor (password) needs to be true to reach conditional access policy
 |extend step2AuthMethod = strcat(tostring(parse_json(AuthenticationDetails)[1].authenticationMethod), " | " , tostring(parse_json(AuthenticationDetails)[1].authenticationStepResultDetail), " | ", tostring(parse_json(AuthenticationDetails)[1].succeeded))
 //|extend DeviceDetail = strcat(tostring(parse_json(DeviceDetail.browser)), " | " , tostring(parse_json(DeviceDetail.operatingSystem)))
-|extend LocationDetails = strcat(tostring(parse_json(LocationDetails_dynamic.city)), " | ", tostring(parse_json(LocationDetails_dynamic.countryOrRegion)))
+|extend LocationDetails = strcat(tostring(parse_json(LocationDetails_dynamic.city)), " - ", tostring(parse_json(LocationDetails_dynamic.countryOrRegion)))
 | summarize 
     ['Count of successful signins'] = countif((ResultType in(successCodes))), //count number of successful sign-ins where success code match ResultType value
     ['Successful result codes'] = make_set_if(ResultType, (ResultType in(successCodes))), //make a set of the relevant success codes,
