@@ -1,7 +1,14 @@
 ### Viewing Account Changes and Entity details
 
+<<<<<<< HEAD
+# Audit Logs - Account Changes
+=======
 Account Change activity including creation, deletion, etc in AuditLogs table along with details of entities from Identity info table.
+>>>>>>> fb1750573d9be4f94e8b7e4c466f5bf3ef1e6686
 
+<<<<<<< HEAD
+
+=======
 ```AuditLogs
 //Different Categories to Check ("RoleManagement", "UserManagement", "Authorization", "Policy", "PolicyManagement", "ApplicationManagement", "GroupManagement", "ProvisioningManagement") 
 //|where Category == "ApplicationManagement"
@@ -24,3 +31,5 @@ Account Change activity including creation, deletion, etc in AuditLogs table alo
 //|summarize count(), make_set(CreatedByIPAddress) by InitiatedByUPN, InitiatedByDisplayName, CreatedByApp, targetUPN, targetDisplayName, OperationName, Category, Identity, Result, tostring(AssignedRoles), AccountDisplayName, JobTitle
 //###############################################################################################################
 ```
+
+>>>>>>> fb1750573d9be4f94e8b7e4c466f5bf3ef1e6686
